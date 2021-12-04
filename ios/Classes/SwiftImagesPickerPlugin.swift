@@ -24,6 +24,7 @@ public class SwiftImagesPickerPlugin: NSObject, FlutterPlugin {
     if call.method=="pick" {
       let args = call.arguments as? NSDictionary;
       let count = args!["count"] as! Int;
+      let duration = args!["duration"] as? Int ?? 3600;
       let language = args!["language"] as! String;
       let pickType = args!["pickType"] as? String;
       let supportGif = args!["gif"] as! Bool;
@@ -37,6 +38,7 @@ public class SwiftImagesPickerPlugin: NSObject, FlutterPlugin {
       self.setLanguage(configuration: config, language: language);
       self.setConfig(configuration: config, pickType: pickType);
       config.maxSelectCount = count;
+      config.maxSelectVideoDuration = duration;
       config.allowSelectGif = supportGif;
       if cropOption != nil {
         config.allowEditImage = true;
